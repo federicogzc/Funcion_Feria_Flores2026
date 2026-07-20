@@ -17,17 +17,19 @@ module.exports = async function (context, callback) {
     'https://sheetdb.io/api/v1/yd1nip9qjq315';
 
   try {
-    if (!numero) {
-      throw new Error('La variable "numero" no está definida.');
+    // MODIFICACIÓN 1: Ahora validamos que la cédula exista para poder buscarla.
+    if (!cedula) {
+      throw new Error('La variable "cedula" no está definida.');
     }
 
-    // 3) ¿Ya existe el número?
+    // MODIFICACIÓN 2: Cambiamos el parámetro de búsqueda de { numero } a { cedula }
     const { data: registros } = await axios.get(`${sheetdbURL}/search`, {
-      params: { numero },          // ?numero=XXXXXXXX
+      params: { cedula },
       timeout: 6000,
-    });                                                   //:contentReference[oaicite:2]{index=2}
+    });
 
     if (Array.isArray(registros) && registros.length > 0) {
+      // Mantenemos el mensaje original para no romper el flujo del IVR
       kit.setVariable('responseMessage', 'Número ya registrado.');
     } else {
       // 4) Construir fila limpiando campos vacíos
@@ -41,7 +43,7 @@ module.exports = async function (context, callback) {
       }
 
       // 5) Insertar (SheetDB => data: [ { … } ])
-      await axios.post(sheetdbURL, { data: [fila] }, { timeout: 6000 });  //:contentReference[oaicite:3]{index=3}
+      await axios.post(sheetdbURL, { data: [fila] }, { timeout: 6000 });
       kit.setVariable('responseMessage', 'Información guardada exitosamente.');
     }
   } catch (err) {
