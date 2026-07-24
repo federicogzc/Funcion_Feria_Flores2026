@@ -3,7 +3,7 @@ from voximplant.apiclient import VoximplantAPI, VoximplantException
 import requests
 
 api = VoximplantAPI("1c1e49a7-2be1-4dd.....n")
-SOURCE = "57666"
+SOURCE = "57***"
 CSV_PATH = "pruebaSMS9_3001-3480.csv"
 SENT_LOG = "enviados.log"          # checkpoint: un numero por linea
 MAX_RETRIES = 5
