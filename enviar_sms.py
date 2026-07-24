@@ -2,7 +2,7 @@ import time, csv, os
 from voximplant.apiclient import VoximplantAPI, VoximplantException
 import requests
 
-api = VoximplantAPI("1c1e49a7-2be1-4dd4-b79e-337737035140_private.json")
+api = VoximplantAPI("1c1e49a7-2be1-4dd.....n")
 SOURCE = "57666"
 CSV_PATH = "pruebaSMS9_3001-3480.csv"
 SENT_LOG = "enviados.log"          # checkpoint: un numero por linea
