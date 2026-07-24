@@ -14,7 +14,7 @@ module.exports = async function (context, callback) {
   // 2) Endpoint SheetDB desde variable de entorno, con fallback
   const sheetdbURL =
     kit.getEnvVariable('SHEETDB_URL') ||
-    'https://sheetdb.io/api/v1/yd1nip9qjq315';
+    'https://sheetdb.......';
 
   try {
     // MODIFICACIÓN 1: Ahora validamos que la cédula exista para poder buscarla.
